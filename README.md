@@ -15,6 +15,12 @@ This repo provides a step-by-step guide to the intricacies involved in establish
 - 📄 **4_KernelSocketbuffers.md**: Detailed exploration of Kernel Socket Buffers, their role, and how they function.
 - 📄 **5_NetlinkGreetCodeWalkReceivingUserSpaceMsg.md**: Code walk-through detailing how to receive messages in user space using Netlink.
 - 📄 **6_NetlinkGreetCodWal3SendingReplyUserspace.md**: Code walk-through illustrating how to send replies from Kernel to user space.
+- 📄 **7_UserspaceProgramThreadModel.md**: Introduction to the userspace program thread model.
+- 📄 **8_APISendmsgtoKernel.md**: Detailed look into the API send message to Kernel.
+- 📄 **9_CodeWalksend_netlink_msg_to_kernel().md**: A code walk-through for the `send_netlink_msg_to_kernel()` function.
+- 📄 **10_Userspace.c flowchart.md**: A flowchart explaining the userspace.c file.
+- 📄 **11_Userspace.cSendCodeImplementation.md**: Dive into the implementation of the sending code for userspace.c.
+- 📄 **12_Userspace.cRecvCodeImplementation.md**: Understand the implementation of the receiving code for userspace.c.
 
 - 📂 **pkg**: Contains the source code for this project. Dive in to see the real implementation and get your hands dirty with some coding! 
 
