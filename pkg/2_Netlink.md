@@ -63,7 +63,8 @@ Function `NetlinkGreetings_init` acts as our module's starting line:
 
 ## CodeFlow
 
-```
+
+```mysql
      +-------+
     | Start |
     +-------+
@@ -114,6 +115,7 @@ Function `NetlinkGreetings_init` acts as our module's starting line:
     +-----+
 ```
 
+
 ### ❓ Interview Questions
 
 🔍 **Q1: What is the primary purpose of netlink sockets?**  
@@ -128,7 +130,7 @@ Function `NetlinkGreetings_init` acts as our module's starting line:
 ---
 
 ❗ **Note**: This  provides an overview. For intricate details, explore the source code and its inline documentation.
-```
+
 
 # Linux Kernel Netlink Module Guide 🚀
 
@@ -167,14 +169,6 @@ The provided kernel module facilitates a rudimentary Netlink interface, enabling
 
 **Q5:** Why is the `MODULE_LICENSE` macro important?  
 **A5:** The `MODULE_LICENSE` macro informs the kernel about the license under which the module is distributed. This is crucial for compliance and ensuring that modules are distributed under compatible licenses with the kernel, especially when considering proprietary vs. open-source dichotomies.
-
----
-
-📘 _Remember: Kernel programming requires meticulous attention to detail, as kernel bugs can crash an entire system! Happy coding!_ 🎉
-
-Alright, I'll provide some interview questions specific to this code snippet, in the format you previously requested (unrendered markdown with emojis).
-
----
 
 ##  Questions and Answers about the Netlink Kernel Module Code
 
