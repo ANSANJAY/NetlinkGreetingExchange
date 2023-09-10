@@ -127,14 +127,9 @@ Function `NetlinkGreetings_init` acts as our module's starting line:
 
 ---
 
-❗ **Note**: This README provides an overview. For intricate details, explore the source code and its inline documentation.
+❗ **Note**: This  provides an overview. For intricate details, explore the source code and its inline documentation.
 ```
 
-This markdown structure, when rendered, will give you a neatly organized README with relevant emojis for flair. The interview questions section offers a quick Q&A format for typical questions related to the topic.
-
-**/
-
-/**
 # Linux Kernel Netlink Module Guide 🚀
 
 This guide delves into a basic implementation of a Linux kernel module that uses the Netlink interface. Let's explore the essentials!
@@ -181,7 +176,7 @@ Alright, I'll provide some interview questions specific to this code snippet, in
 
 ---
 
-## Interview Questions and Answers about the Netlink Kernel Module Code
+##  Questions and Answers about the Netlink Kernel Module Code
 
 ### 1. What is the purpose of the `netlink_recv_msg_fn` function? 🧐
 
@@ -216,7 +211,4 @@ If the received message has the `NLM_F_ACK` flag set, the kernel module construc
 **Answer:**
 When the module is being removed, the `NetlinkGreetings_exit` function is triggered. Inside this function, the Netlink socket that was previously created is released using the `netlink_kernel_release` function. Additionally, the pointer `nl_sk` is set to `NULL` to avoid potential dereferences of a stale pointer.
 
----
-
-I hope these questions help! Let me know if you'd like any other information or additional questions.
 **/
