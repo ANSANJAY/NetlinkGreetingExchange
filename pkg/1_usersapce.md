@@ -246,14 +246,75 @@ This function serves to communicate with the kernel space using Netlink sockets 
 This function essentially establishes a Netlink socket, binds to it, sends a message to the kernel, waits for a reply, and then cleans up resources.
 
 ---
+## Custom API Logic Explanation 🛠
 
-I hope this detailed explanation helps you understand the custom API built in the program. 
-If there were more custom functions or parts of the program you'd like me to break down, please let me know!
+### `send_netlink_msg_to_kernel()`
 
-Alright, I'll break down the provided code in a detailed manner to assist you in preparing for an interview. Here's a markdown (`readme.md`) format with notes:
+#### Purpose:
+This function sends a message to the kernel over the Netlink protocol.
+
+#### Logic:
+1. **Destination Address Initialization**: This API constructs a `sockaddr_nl` structure named `dest_addr` representing the address for the Linux kernel. Since the kernel's process ID is always zero, `nl_pid` is set to `0`.
+2. **Netlink Message Header Initialization**: It dynamically allocates memory to construct a Netlink message. This message consists of a header (`nlh`) and the actual payload (`msg`).
+3. **Filling the Header**: The header fields are filled with metadata like message length, the process ID (PID) of the sender, message type, flags, and a sequence number.
+4. **Filling the Payload**: The actual message content (`msg`) is copied to the payload space of the Netlink message.
+5. **Wrapping Data Inside iovec**: An `iovec` structure (`iov`) wraps the Netlink message. This allows a scatter/gather array approach for sending possibly non-contiguous blocks of data.
+6. **Message Sending**: A `msghdr` structure (`outermsghdr`) wraps the `iovec` and is filled with details about the message, such as the destination address and the iovec itself. The `sendmsg()` function is then used to send this message.
+7. **Error Checking**: The function checks if the message was successfully sent.
+
+### `create_netlink_socket()`
+
+#### Purpose:
+Creates a socket to communicate over the Netlink protocol.
+
+#### Logic:
+1. **Socket Creation**: Uses the `socket()` function to create a socket that operates using the Netlink protocol. The socket type used is `SOCK_RAW`.
+
+### `_start_kernel_data_receiver_thread()`
+
+#### Purpose:
+This function acts as a thread handler. It continuously receives messages from the kernel using Netlink sockets.
+
+#### Logic:
+1. **Initialization**: Memory is allocated to hold incoming Netlink messages.
+2. **Reception Loop**: 
+    - The loop continuously waits for a message from the kernel using the `recvmsg()` function.
+    - Once a message is received, it's parsed and the payload (message from the kernel) is printed.
+
+### `start_kernel_data_receiver_thread()`
+
+#### Purpose:
+Starts a new thread that listens for incoming messages from the kernel.
+
+#### Logic:
+1. **Thread Initialization**: Initializes thread attributes and sets it to a detached state.
+2. **Thread Creation**: The `_start_kernel_data_receiver_thread` function is set as the thread handler. The `pthread_create` function is used to start this new thread.
+
+### `greet_kernel()`
+
+#### Purpose:
+Sends a greeting message to the kernel.
+
+#### Logic:
+1. **Message Sending**: Uses the `send_netlink_msg_to_kernel()` function with a specific message type (`NLMSG_GREET`) to send the greeting message.
+
+### `exit_userspace()`
+
+#### Purpose:
+Cleans up resources before exiting the user-space application.
+
+#### Logic:
+1. **Socket Closure**: The Netlink socket descriptor is closed.
+
+### `new_seq_no()`
+
+#### Purpose:
+Generates a new sequence number for Netlink messages.
+
+#### Logic:
+1. **Sequence Generation**: Uses a static variable (`seq_no`) that gets incremented with every call.
 
 ---
-
 # Netlink Sockets: User Space Application Guide 🚀
 
 Netlink socket is a special IPC (Inter-Process Communication) used for communication between the kernel and user-space processes or between different user-space processes. The provided code demonstrates how a user-space application communicates with a kernel module using Netlink sockets.
