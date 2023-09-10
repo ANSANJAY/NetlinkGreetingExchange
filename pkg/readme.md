@@ -71,6 +71,11 @@ If you encounter the error `Netlink socket creation failed: error = 93`, it may 
 
 ```
 
+## Expected Ouptut
+
+![](https://github.com/ANSANJAY/NetlinkGreetingExchange/blob/main/pkg/Screenshot%20from%202023-09-09%2017-21-41.png)
+
+
 ## Contributing 🤝
 
 Feel free to fork, create a feature branch, and submit a pull request if you wish to contribute to this project!
